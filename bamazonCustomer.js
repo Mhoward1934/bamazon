@@ -1,6 +1,7 @@
 
 var fs = require("fs");
 var mysql = require("mysql");
+var inquirer = require("inquirer");
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -21,3 +22,9 @@ var connection = mysql.createConnection({
     console.log("connected as id " + connection.threadId);
     connection.end();
   });
+
+  connection.query("SELECT * FROM products", function productTable(err, result) {
+    console.log(result);
+  })
+
+  
