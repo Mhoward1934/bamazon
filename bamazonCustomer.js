@@ -2,6 +2,7 @@
 var fs = require("fs");
 var mysql = require("mysql");
 var inquirer = require("inquirer");
+var Table = require("cli-table");
 
 var connection = mysql.createConnection({
     host: "localhost",
@@ -23,8 +24,25 @@ var connection = mysql.createConnection({
     connection.end();
   });
 
-  connection.query("SELECT * FROM products", function productTable(err, result) {
-    console.log(result);
-  })
-
   
+  function itemForSale() {
+    connection.query("SELECT * FROM products", function (err, result) {
+      var table = new Table({
+        head: ['Item ID', 'Product Name', 'Price', 'Quantity']
+      , colWidths: [10, 30, 10, 10]
+    });
+     
+    // table is an Array, so you can `push`, `unshift`, `splice` and friends
+    for(var i = 0; i < result.length; i++){
+      table.push(
+          [result[i].item_id, result[i].product_name, result[i].price, result[i].stock_quantity]
+      );
+
+    }
+     
+    console.log(table.toString());
+
+    })
+    
+  };
+  itemForSale();
