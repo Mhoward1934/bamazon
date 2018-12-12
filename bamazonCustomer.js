@@ -83,11 +83,12 @@ function orderItem() {
         
             for (var x = 0; x < recordkeeping.length; x+=2) {
               table.push(
-                [recordkeeping[x][0].item_id, recordkeeping[x][0].product_name, recordkeeping[x][0].price, recordkeeping[x+1]]
+                [result[0].item_id, result[0].product_name, result[0].price, recordkeeping[x+1]]
               );
             }
-            //console.log(table.toString());
-            //console.log(("Your total is: ") + total(recordkeeping[x].price * recordkeeping[x+1]));
+            console.log(table.toString());
+            console.log("Your total is: ");
+            total += (result[0].price * recordkeeping[x+1]);
           }
         }
       })
