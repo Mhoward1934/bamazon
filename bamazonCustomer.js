@@ -6,6 +6,8 @@ var Table = require("cli-table");
 var recordkeeping = [];
 var databaseUpdate = [];
 var total = 0;
+var action = process.argv[2];
+var value = process.argv[3];
 
 
 var connection = mysql.createConnection({
@@ -49,9 +51,9 @@ function itemForSale() {
 };
 itemForSale();
 
-// function to handle using ordering items from the list.
+// function to handle user ordering items from the list.
 function orderItem() {
-  // prompt for item id and quantity.
+  // prompt for item id and quantity and return to the user what they ordered and the total price.
   inquirer
     .prompt([
       {
@@ -80,18 +82,21 @@ function orderItem() {
               head: ['Item ID', 'Product Name', 'Price', 'Quantity']
               , colWidths: [10, 30, 10, 10]
             });
-        
-            for (var x = 0; x < recordkeeping.length; x+=2) {
+
+            for (var x = 0; x < recordkeeping.length; x += 2) {
               table.push(
-                [result[0].item_id, result[0].product_name, result[0].price, recordkeeping[x+1]]
+                [result[0].item_id, result[0].product_name, result[0].price, recordkeeping[x + 1]]
               );
-            }
+            };
             console.log(table.toString());
-            console.log("Your total is: ");
-            total += (result[0].price * recordkeeping[x+1]);
+            // for (var y = 0; y < recordkeeping.length; y) {
+            //   if (parseInt(recordkeeping[y])) {
+            //     //console.log("Your total is: "); 
+            //     total += parseInt(result[0].price) * parseInt(recordkeeping[y]);
           }
+          whatNext();
         }
-      })
+      });
     })
 }
 
@@ -99,5 +104,17 @@ setTimeout(function () {
   orderItem();
 }, 1000);
 
-
-
+function whatNext() {
+  inquirer.prompt([
+    {
+      type: "list",
+      name: "options",
+      message: "What would you like to do?",
+      choices: ["Continue Shopping?", "Checkout?", "Quit?"]
+    }
+  ]).then(function(customer) {
+    if(customer.options === "Continue Shopping?") {
+      orderItem();
+    }
+  })
+};
