@@ -60,7 +60,6 @@ function orderItem() {
         name: "item",
         type: "input",
         message: "Please enter the Item ID for the product you would like to purchase.",
-
       },
       {
         name: "quantity",
@@ -112,9 +111,19 @@ function whatNext() {
       message: "What would you like to do?",
       choices: ["Continue Shopping?", "Checkout?", "Quit?"]
     }
-  ]).then(function(customer) {
-    if(customer.options === "Continue Shopping?") {
+  ]).then(function (customer) {
+    if (customer.options === "Continue Shopping?") {
       orderItem();
+    } else if (customer.options === "Checkout?") {
+      checkout();
+    } else {
+      (customer.options === "Quit?")
+        function quit() {
+          process.kill(process.pid);
+        }
+        console.log("Thanks for visiting Bamazon!");
+      }
     }
-  })
+  );
 };
+
