@@ -93,7 +93,7 @@ function orderItem() {
             //     //console.log("Your total is: "); 
             //     total += parseInt(result[0].price) * parseInt(recordkeeping[y]);
           }
-          whatNext();
+          whatNext(answer.item, answer.quantity);
         }
       });
     })
@@ -103,7 +103,7 @@ setTimeout(function () {
   orderItem();
 }, 1000);
 
-function whatNext() {
+function whatNext(item_id, stock_quantity, result) {
   inquirer.prompt([
     {
       type: "list",
@@ -115,31 +115,32 @@ function whatNext() {
     if (customer.options === "Continue Shopping?") {
       orderItem();
     } else if (customer.options === "Checkout?") {
-      function checkout() {
-        connection.query(
-          "UPDATE products SET stock_quantity WHERE item_id = ?",
-          {
-            item_id: answer.item,
-            stock_quantity: parseInt(result[i].stock_quantity) - parseInt(answer.quantity)
-          });
-          function error(err) {
-            if (err) throw err;
-            console.log("Your order was placed successfully!");
-            console.log("Your total is: ", total += parseInt(result[0].price) * parseInt(recordkeeping[x]));
-          quit();
-        }
-      };
+      checkout();
     } else {
       (customer.options === "Quit?")
-      function quit() {
-        process.kill(process.pid);
-      }
-      console.log("Thanks for visiting Bamazon!");
+      quit();
     }
-  }
-  );
+  });
 };
 
+function checkout() {
+  for (var y = 0; y < databaseUpdate.length; y += 2) {
+    query2 = "UPDATE products SET stock_quantity = ? WHERE item_id = ?";
+    connection.query(query2, [databaseUpdate[y + 1], databaseUpdate[y]], function (err, result) {
+      for (var n = 0; n < result.length; n++) {
+        console.log("Your total is: ")
+        total += parseInt(result[0].price) * parseInt(answer.quantity);
+      }
+    });
+    console.log("Your order was placed successfully!");
+    console.log("Thank you for shopping at Bamazon!");
+  }
+};
+
+function quit() {
+  process.kill(process.pid);
+  console.log("Thanks for visiting Bamazon!");
+};
 
 
 
