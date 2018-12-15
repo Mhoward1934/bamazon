@@ -116,16 +116,16 @@ function whatNext() {
       orderItem();
     } else if (customer.options === "Checkout?") {
       function checkout() {
-        console.log("Your total is: ", total += parseInt(result[0].price) * parseInt(recordkeeping[x]));
         connection.query(
           "UPDATE products SET stock_quantity WHERE item_id = ?",
           {
             item_id: answer.item,
             stock_quantity: parseInt(result[i].stock_quantity) - parseInt(answer.quantity)
           });
-        function error(err) {
-          if (err) throw err;
-          console.log("Your order was placed successfully!");
+          function error(err) {
+            if (err) throw err;
+            console.log("Your order was placed successfully!");
+            console.log("Your total is: ", total += parseInt(result[0].price) * parseInt(recordkeeping[x]));
           quit();
         }
       };
