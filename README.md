@@ -9,7 +9,7 @@ This application is desgined to take customer orders from a list of available pr
 2. Should the customer choose a quantity over the available stock they will receive a message stating "Sorry, this amount is greater than what we have in inventory at this time.  Please try again." and will then be asked what would they like to do next "Continue Shopping", "Checkout", or "Quit".  At this point the customer can choose to Continue Shopping and enter the appropriate quantity for the product they would like to purchase.
 
 ![Over Order]
-(
+(https://github.com/Mhoward1934/bamazon/blob/master/images/Customer_Over_Order.png)
 
 Attached is a link to the video demonstrating how the application works:
 
