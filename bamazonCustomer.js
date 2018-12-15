@@ -115,15 +115,31 @@ function whatNext() {
     if (customer.options === "Continue Shopping?") {
       orderItem();
     } else if (customer.options === "Checkout?") {
-      checkout();
+      function checkout() {
+        console.log("Your total is: ", total += parseInt(result[0].price) * parseInt(recordkeeping[x]));
+        connection.query(
+          "UPDATE products SET stock_quantity WHERE item_id = ?",
+          {
+            item_id: answer.item,
+            stock_quantity: parseInt(result[i].stock_quantity) - parseInt(answer.quantity)
+          });
+        function error(err) {
+          if (err) throw err;
+          console.log("Your order was placed successfully!");
+          quit();
+        }
+      };
     } else {
       (customer.options === "Quit?")
-        function quit() {
-          process.kill(process.pid);
-        }
-        console.log("Thanks for visiting Bamazon!");
+      function quit() {
+        process.kill(process.pid);
       }
+      console.log("Thanks for visiting Bamazon!");
     }
+  }
   );
 };
+
+
+
 
