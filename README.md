@@ -20,7 +20,7 @@ This application is desgined to take customer orders from a list of available pr
 
 ![Checkout]
 (https://github.com/Mhoward1934/bamazon/blob/master/images/Checkout1.png)
-(
+(https://github.com/Mhoward1934/bamazon/blob/master/images/Checkout2.png)
 
 
 Attached is a link to the video demonstrating how the application works:
