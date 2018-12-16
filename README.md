@@ -16,6 +16,11 @@ This application is desgined to take customer orders from a list of available pr
 ![Quit]
 (https://github.com/Mhoward1934/bamazon/blob/master/images/Quit.png)
 
+4. When the customer is done making a selection from the list they can then choose "Checkout". By choosing "Checkout" this will process the order, and deplete the stock quantity.  The customer will then receive a message stating "Your order was placed successfully!", "Thank you for shopping at Bamazon!".
+
+![Checkout]
+(
+
 
 Attached is a link to the video demonstrating how the application works:
 
