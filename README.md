@@ -23,7 +23,7 @@ This application is desgined to take customer orders from a list of available pr
 (https://github.com/Mhoward1934/bamazon/blob/master/images/Checkout2.png)
 
 
-Attached is a link to the video demonstrating how the application works:
+### Attached is a link to the video demonstrating how the application works:
 https://drive.google.com/open?id=15DALopqDG37tO-bOV4NZK5NdDicsUSfY
 
 
