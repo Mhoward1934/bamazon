@@ -14,7 +14,8 @@ This application is desgined to take customer orders from a list of available pr
 3. Once the product is displayed, the customer will then be asked what would they like to do next "Continue Shopping", "Checkout", or "Quit".  If the customer selects "Quit" the program will terminate and display "Thanks for visiting Bamazon!" and the order is not processed.
 
 ![Quit]
-(
+(https://github.com/Mhoward1934/bamazon/blob/master/images/Quit.png)
+
 
 Attached is a link to the video demonstrating how the application works:
 
