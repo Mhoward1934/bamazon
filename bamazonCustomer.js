@@ -88,10 +88,6 @@ function orderItem() {
               );
             };
             console.log(table.toString());
-            // for (var y = 0; y < recordkeeping.length; y) {
-            //   if (parseInt(recordkeeping[y])) {
-            //     //console.log("Your total is: "); 
-            //     total += parseInt(result[0].price) * parseInt(recordkeeping[y]);
           }
           whatNext(answer.item, answer.quantity);
         }
@@ -135,10 +131,11 @@ function checkout() {
     console.log("Your order was placed successfully!");
     console.log("Thank you for shopping at Bamazon!");
   }
+  connection.end();
 };
 
 function quit() {
-  process.kill(process.pid);
+  connection.end();
   console.log("Thanks for visiting Bamazon!");
 };
 
