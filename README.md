@@ -24,6 +24,7 @@ This application is desgined to take customer orders from a list of available pr
 
 
 Attached is a link to the video demonstrating how the application works:
+https://drive.google.com/open?id=15DALopqDG37tO-bOV4NZK5NdDicsUSfY
 
 
 ## Built With
