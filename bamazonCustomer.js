@@ -3,7 +3,7 @@ var fs = require("fs");
 var mysql = require("mysql");
 var inquirer = require("inquirer");
 var Table = require("cli-table");
-var recordkeeping = [];
+var recordKeeping = [];
 var databaseUpdate = [];
 var total = 0;
 var action = process.argv[2];
@@ -75,21 +75,26 @@ function orderItem() {
             console.log("Sorry, this amount is greater than what we have in inventory at this time.  Please try again.");
           }
           else {
-            recordkeeping.push(result, parseInt(answer.quantity));
+            recordKeeping.push(result, parseInt(answer.quantity));
             databaseUpdate.push(result[0].item_id, (parseInt(result[0].stock_quantity) - parseInt(answer.quantity)));
             var table = new Table({
               head: ['Item ID', 'Product Name', 'Price', 'Quantity']
               , colWidths: [10, 30, 10, 10]
             });
 
-            for (var x = 0; x < recordkeeping.length; x += 2) {
+            for (var x = 0; x < recordKeeping.length; x += 2) {
               table.push(
-                [result[0].item_id, result[0].product_name, result[0].price, recordkeeping[x + 1]]
+                [recordKeeping[x][0].item_id, recordKeeping[x][0].product_name, recordKeeping[x][0].price, recordKeeping[x + 1]]
               );
+              total += (recordKeeping[x][0].price * recordKeeping[x + 1]);
             };
-            console.log(table.toString());
-          }
-          whatNext(answer.item, answer.quantity);
+            table.push(
+              ["", "", "", ""],
+              ["", "", "Total: ", total]
+              );
+              console.log(table.toString());
+            };
+            whatNext(answer.item, answer.quantity);
         }
       });
     })
@@ -123,13 +128,10 @@ function checkout() {
   for (var y = 0; y < databaseUpdate.length; y += 2) {
     query2 = "UPDATE products SET stock_quantity = ? WHERE item_id = ?";
     connection.query(query2, [databaseUpdate[y + 1], databaseUpdate[y]], function (err, result) {
-      for (var n = 0; n < result.length; n++) {
-        console.log("Your total is: ")
-        total += parseInt(result[0].price) * parseInt(answer.quantity);
-      }
+      
+      console.log("\n Your order was placed successfully! Thank you for shopping at Bamazon! \n");
     });
-    console.log("Your order was placed successfully!");
-    console.log("Thank you for shopping at Bamazon!");
+  
   }
   connection.end();
 };
